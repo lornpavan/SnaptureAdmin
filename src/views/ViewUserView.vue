@@ -18,7 +18,7 @@ webSocket.onopen = (event) => {
 }
 
 const key = ref(0);
-function getUsers() {
+async function getUsers() {
     const data = "{'auth':'snapturemobile','cmd':'getusers'}";
     webSocket.send(data);
     webSocket.onmessage = function(event) {
@@ -84,7 +84,7 @@ function deleteUser(user: User) {
   webSocket.send(data);
   webSocket.onmessage = async function(event) {
     console.log(event.data);
-    //getUsers();
+    await getUsers();
     console.log(key);
     key.value++;
     console.log(key);
